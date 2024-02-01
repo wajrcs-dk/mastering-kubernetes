@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: laravel-in-kubernetes-fpm
+  labels:
+    tier: backend
+    layer: fpm
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      tier: backend
+      layer: fpm
+  template:
+    metadata:
+      labels:
+        tier: backend
+        layer: fpm
+    spec:
+      containers:
+        - name: fpm
+          image: laravel-in-kubernetes/composer_base
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 9000

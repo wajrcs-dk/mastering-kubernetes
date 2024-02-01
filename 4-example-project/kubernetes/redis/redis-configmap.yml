@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: redis-stack-configuration
+  labels:
+    app: redis
+data:
+  master.conf: |
+    maxmemory 1000mb
+    maxmemory-policy allkeys-lru
+    maxclients 20000
+    timeout 300
+    dbfilename dump.rdb
+    dir /data
+    appendonly yes
+    save ""
+  slave.conf: |
+    slaveof redis-stack-0.redis-service.redis 6379
+    maxmemory 1000mb
+    maxmemory-policy allkeys-lru
+    maxclients 20000
+    timeout 300
+    dir /data
+    appendonly yes
+    save ""

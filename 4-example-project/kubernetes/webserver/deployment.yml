@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: laravel-in-kubernetes-webserver
+  labels:
+    tier: backend
+    layer: webserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      tier: backend
+      layer: webserver
+  template:
+    metadata:
+      labels:
+        tier: backend
+        layer: webserver
+    spec:
+      containers:
+        - name: webserver
+          image: laravel-in-kubernetes/web_server
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 80
+          env:
+            # Inject the FPM Host as we did with Docker Compose
+            - name: FPM_HOST
+              value: laravel-in-kubernetes-fpm:9000
