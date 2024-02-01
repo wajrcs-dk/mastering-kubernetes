@@ -5,8 +5,8 @@ Install [VirtualBox](https://www.virtualbox.org) and [Vagrant](https://www.vagra
 
 ## 2. Installation
 
-    mkdir mastering-kubernetes
-    cd mastering-kubernetes
+    mkdir mastering-kubernetes-vm
+    cd mastering-kubernetes-vm
     mkdir code
     cd code
     git clone https://github.com/wajrcs-dk/mastering-kubernetes
