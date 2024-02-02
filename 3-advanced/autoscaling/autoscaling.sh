@@ -6,8 +6,7 @@
 # For production, make sure you remove the following :
 # - --kubelet-insecure-tls
 # - --kubelet-preferred-address-types="InternalIP"
-
-kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.7.0/components.yaml
+kubectl apply -f metrics-server/components.yaml
 kubectl get pods -n kube-system
 kubectl top nodes
 kubectl top pods
