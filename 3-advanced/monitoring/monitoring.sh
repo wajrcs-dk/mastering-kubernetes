@@ -4,8 +4,8 @@ helm repo add prometheus-community https://prometheus-community.github.io/helm-c
 helm repo update
 helm install prometheus prometheus-community/kube-prometheus-stack
 
-sudo apt-get install lubuntu-desktop -y
-
+# Accessing using Browser
 kubectl port-forward deployment/prometheus-grafana 3000
-
-http://localhost:3000
+# http://localhost:3000
+# Username: admin
+# Password: prom-operator
