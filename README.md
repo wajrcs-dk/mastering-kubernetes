@@ -11,8 +11,15 @@ Install [VirtualBox](https://www.virtualbox.org) and [Vagrant](https://www.vagra
     cd code
     git clone https://github.com/wajrcs-dk/mastering-kubernetes
     cp mastering-kubernetes/5-vms/single-node/Vagrantfile ../
+    cd ..
     vagrant up
     vagrant ssh
+
+## Lubuntu Desktop Installation
+
+    sudo apt-get update
+    sudo apt-get install lubuntu-desktop -y
+    sudo apt-get install firefox
 
 ## Minikube Installation
 
