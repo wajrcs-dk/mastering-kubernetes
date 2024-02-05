@@ -15,19 +15,19 @@ Install [VirtualBox](https://www.virtualbox.org) and [Vagrant](https://www.vagra
     vagrant up
     vagrant ssh
 
-## Lubuntu Desktop Installation
+### Lubuntu Desktop Installation For UI (optional)
 
     sudo apt-get update
     sudo apt-get install lubuntu-desktop -y
     sudo apt-get install firefox
 
-## Minikube Installation
+### Minikube Installation
 
 Please follow this bash script
 
     sh /vagrant_data/mastering-kubernetes/1-installation/minikube.sh
 
-## Example Project
+## 3. Example Project
 
 Laravel Project: Nginx + PHP FPM + Mysql, using Redis for sessions and load balancer.
 
