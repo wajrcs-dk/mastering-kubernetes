@@ -89,4 +89,4 @@ sudo kubeadm join 192.168.33.70:6443 --token qy1l17.h52cdhdrrrh1opib --discovery
 
 # On master node
 # Deploy sample app
-kubectl apply -f sample-app.yaml
+kubectl apply -f nginx-app.yaml
