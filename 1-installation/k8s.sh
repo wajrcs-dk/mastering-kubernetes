@@ -41,11 +41,11 @@ sudo docker run hello-world
 git clone https://github.com/Mirantis/cri-dockerd.git
 cd cri-dockerd
 
-# Download release from here https://github.com/Mirantis/cri-dockerd/releases
-# As cri-dockerd
-cd cri-dockerd
+# Download release from here https://github.com/Mirantis/cri-dockerd/releases as cri-dockerd file
+# For instance https://github.com/Mirantis/cri-dockerd/releases/download/v0.3.9/cri-dockerd-0.3.9.amd64.tgz
+# Extract and copy the file as cri-dockerd in current directory
 mkdir -p /usr/local/bin
-sudo install -o root -g root -m 0755 /vagrant_data/cri-dockerd /usr/local/bin/cri-dockerd
+sudo install -o root -g root -m 0755 ./cri-dockerd /usr/local/bin/cri-dockerd
 sudo install packaging/systemd/* /etc/systemd/system
 sudo sed -i -e 's,/usr/bin/cri-dockerd,/usr/local/bin/cri-dockerd,' /etc/systemd/system/cri-docker.service
 sudo systemctl daemon-reload
@@ -67,6 +67,8 @@ sudo apt-mark hold kubelet kubeadm kubectl
 # On each master node
 # https://v1-28.docs.kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/
 sudo kubeadm init --apiserver-advertise-address=192.168.33.70 --pod-network-cidr=192.168.0.0/16 --cri-socket=unix://var/run/cri-dockerd.sock
+# or if on class A IP address
+sudo kubeadm init --apiserver-advertise-address=10.4.110.208 --pod-network-cidr=10.244.0.0/16 --cri-socket=unix://var/run/cri-dockerd.sock
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
