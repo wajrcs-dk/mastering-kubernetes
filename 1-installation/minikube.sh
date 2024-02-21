@@ -18,6 +18,13 @@ sudo snap install kubectl --classic
 # Start Minikube
 minikube start
 
+# Deploy sample app
+kubectl apply -f /vagrant_data/mastering-kubernetes/1-installation/nginx-app.yaml
+
+# Testing service
+echo  $(minikube ip)
+curl $(minikube ip):32000
+
 # Halt cluster
 minikube stop
 
