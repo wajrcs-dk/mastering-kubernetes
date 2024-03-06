@@ -13,7 +13,9 @@ kubectl apply -f deployments/mongo-express-deployment.yaml
 kubectl apply -f services/mongo-express-service.yaml
 
 # Deploy Ingress
-kubectl apply -f ingress/ingress.yml
+kubectl apply -f ingress/ingress.yaml
+minikube ip
+# use ip address in /etc/host mongo-dashboard.com minikube ip
 
 # If using NodePort with LoadBalancer
 # minikube service mongo-express-service --url

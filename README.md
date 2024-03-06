@@ -19,7 +19,7 @@ Install [VirtualBox](https://www.virtualbox.org) and [Vagrant](https://www.vagra
 
     sudo apt-get update
     sudo apt-get install lubuntu-desktop -y
-    sudo apt-get install firefox
+    sudo apt-get install firefox -y
 
 ### Minikube Installation
 
