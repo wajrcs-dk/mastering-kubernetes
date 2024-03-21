@@ -1,0 +1,56 @@
+version: '3.8'
+services:
+    # We need to run the FPM container for our application based on composer_base
+    laravel.fpm:
+        container_name: laravel.fpm
+        image: laravel-in-kubernetes/composer_base
+        build: 
+            context: .
+            dockerfile: Dockerfile
+            target: composer_base
+        ports:
+            - "9000:9000"
+    
+    # We need to run the cron container for our application based on composer_base
+    laravel.cron:
+        container_name: laravel.cron
+        image: laravel-in-kubernetes/composer_base
+        build: 
+            context: .
+            dockerfile: Dockerfile
+            target: composer_base
+    
+    # Database Service
+    db:
+        image : mysql:latest
+        container_name : db
+        volumes:
+            - /laravel-in-kubernetes-mysql:/var/lib/mysql
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_DATABASE: dzhw-laravel-charts2
+            MYSQL_ROOT_PASSWORD: root
+
+    # phpMyAdmin Service
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: phpmyadmin
+        ports:
+            - "3400:80"
+        depends_on:
+            - db
+
+    # Run the web server container for static content, and proxying to our FPM container
+    laravel.web:
+        container_name: laravel.web
+        image: laravel-in-kubernetes/web_server
+        build: 
+            context: .
+            dockerfile: Dockerfile
+            target: web_server
+        ports:
+            - "8080:80"
+        depends_on:
+            - laravel.fpm
+            - db

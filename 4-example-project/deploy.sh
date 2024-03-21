@@ -41,6 +41,13 @@ kubectl apply -f ./kubernetes/redis/redis-service.yml
 kubectl apply -f ./kubernetes/phpmyadmin/deployment.yml
 kubectl apply -f ./kubernetes/phpmyadmin/service.yml
 kubectl port-forward service/laravel-in-kubernetes-phpmyadmin 8080:80
+# database
+dzhw-laravel-charts3
 
 # Deploy Ingress
 kubectl apply -f ./kubernetes/ingress/ingress.yml
+
+# Domain name
+# dzhw-charts.de
+# or
+# laravel-project

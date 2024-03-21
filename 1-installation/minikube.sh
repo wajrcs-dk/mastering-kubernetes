@@ -25,6 +25,11 @@ kubectl apply -f /vagrant_data/mastering-kubernetes/1-installation/nginx-app.yam
 echo  $(minikube ip)
 curl $(minikube ip):32000
 
+# Install Desktop UI and Firefox
+sudo apt-get update
+sudo apt-get install lubuntu-desktop -y
+sudo apt-get install firefox -y
+
 # Halt cluster
 minikube stop
 
