@@ -6,12 +6,6 @@ minikube addons enable ingress
 
 cd /vagrant_data/4-example-project/
 
-# Setup Mysql
-kubectl apply -f ./kubernetes/mysql/mysql-configmap.yaml
-kubectl apply -f ./kubernetes/mysql/mysql-services.yaml
-kubectl apply -f ./kubernetes/mysql/mysql-statefulset.yaml
-kubectl get pods -l app=mysql --watch
-
 # Building Project
 eval $(minikube docker-env)
 docker build . --target composer_base
@@ -20,6 +14,17 @@ docker compose build
 
 # Verify Images
 minikube image ls --format table
+
+# Setup Mysql
+kubectl apply -f ./kubernetes/mysql/mysql-configmap.yaml
+kubectl apply -f ./kubernetes/mysql/mysql-services.yaml
+kubectl apply -f ./kubernetes/mysql/mysql-statefulset.yaml
+kubectl get pods -l app=mysql --watch
+
+# Deploy Redis
+kubectl apply -f ./kubernetes/redis/redis-configmap.yml
+kubectl apply -f ./kubernetes/redis/redis-statefulset.yml
+kubectl apply -f ./kubernetes/redis/redis-service.yml
 
 # Setup Config Maps
 kubectl apply -f ./kubernetes/common/
@@ -32,17 +37,13 @@ kubectl apply -f ./kubernetes/fpm/service.yml
 kubectl apply -f ./kubernetes/webserver/deployment.yml
 kubectl apply -f ./kubernetes/webserver/service.yml
 
-# Deploy Redis
-kubectl apply -f ./kubernetes/redis/redis-configmap.yml
-kubectl apply -f ./kubernetes/redis/redis-statefulset.yml
-kubectl apply -f ./kubernetes/redis/redis-service.yml
-
 # Deploy PhpMyAdmin
 kubectl apply -f ./kubernetes/phpmyadmin/deployment.yml
 kubectl apply -f ./kubernetes/phpmyadmin/service.yml
 kubectl port-forward service/laravel-in-kubernetes-phpmyadmin 8080:80
+
 # database
-dzhw-laravel-charts3
+# dzhw-laravel-charts
 
 # Deploy Ingress
 kubectl apply -f ./kubernetes/ingress/ingress.yml

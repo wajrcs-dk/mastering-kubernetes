@@ -42,8 +42,8 @@ minikube delete
 minikube start --insecure-registry="192.168.49.2:5000"
 
 # Change the default memory limit (requires a restart):
-minikube config set memory 8001
-minikube config set cpus 8
+minikube config set memory 8000
+minikube config set cpus 4
 
 # Create a second cluster running an older Kubernetes release:
 minikube start -p aged --kubernetes-version=v1.21.0
